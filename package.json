@@ -1,0 +1,16 @@
+{
+  "name": "project-ccccc",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Game Top-up & Gacha Vault Platform (Backend & Unified Frontend + Backoffice)",
+  "scripts": {
+    "dev": "concurrently -k -n \"BACKEND,FRONTEND\" -c \"blue.bold,green.bold\" \"npm run dev --prefix backend\" \"npm run dev --prefix frontend\"",
+    "dev:backend": "npm run dev --prefix backend",
+    "dev:frontend": "npm run dev --prefix frontend",
+    "build:all": "npm run build --prefix backend && npm run build --prefix frontend",
+    "start": "start-all.bat"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}

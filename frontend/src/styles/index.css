@@ -1,0 +1,673 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary-accent: #6366F1;
+  --primary-accent-glow: rgba(99, 102, 241, 0.35);
+}
+
+body {
+  margin: 0;
+  background-color: #07090D;
+  color: #FFFFFF;
+  font-family: 'Inter', 'Noto Sans Thai', sans-serif;
+  overflow-x: hidden;
+}
+
+/* Custom modern scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #07090D;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1F2937;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #374151;
+}
+
+/* Glassmorphism helpers */
+.glass-panel {
+  background: rgba(13, 17, 23, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-panel-elevated {
+  background: rgba(18, 24, 33, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* Shimmer Animation */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 2.5s infinite;
+}
+
+/* Box opening shake keyframes */
+@keyframes suspense-shake {
+
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+
+  20% {
+    transform: translate(-3px, -3px) rotate(-2deg);
+  }
+
+  40% {
+    transform: translate(3px, 3px) rotate(2deg);
+  }
+
+  60% {
+    transform: translate(-4px, 2px) rotate(-3deg);
+  }
+
+  80% {
+    transform: translate(4px, -2px) rotate(3deg);
+  }
+}
+
+.animate-suspense {
+  animation: suspense-shake 0.35s infinite;
+}
+
+/* Winner Reveal — Golden Glow Animations */
+@keyframes golden-ring-pulse {
+
+  0%,
+  100% {
+    box-shadow:
+      0 0 15px rgba(245, 158, 11, 0.4),
+      0 0 35px rgba(245, 158, 11, 0.15);
+  }
+
+  50% {
+    box-shadow:
+      0 0 30px rgba(245, 158, 11, 0.7),
+      0 0 60px rgba(245, 158, 11, 0.25);
+  }
+}
+
+.animate-golden-ring {
+  animation: golden-ring-pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes neon-scan-line {
+  0% {
+    top: 0%;
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.6;
+  }
+
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+.neon-scan-line::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.8), rgba(244, 63, 94, 0.8), transparent);
+  animation: neon-scan-line 1.5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* Winner card crown glow overlay */
+@keyframes crown-glow {
+
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.8;
+    transform: scale(1.1);
+  }
+}
+
+.animate-crown-glow {
+  animation: crown-glow 2s ease-in-out infinite;
+}
+
+/* Starburst effect behind winner */
+@keyframes starburst {
+  0% {
+    transform: rotate(0deg);
+    opacity: 0.3;
+  }
+
+  100% {
+    transform: rotate(360deg);
+    opacity: 0.3;
+  }
+}
+
+.animate-starburst {
+  animation: starburst 8s linear infinite;
+}
+
+/* Winner text shimmer */
+@keyframes text-shimmer {
+  0% {
+    background-position: -200% center;
+  }
+
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.animate-text-shimmer {
+  background-size: 200% auto;
+  animation: text-shimmer 3s linear infinite;
+}
+
+/* Slot active neon border */
+@keyframes slot-neon-border {
+
+  0%,
+  100% {
+    border-color: rgba(168, 85, 247, 0.8);
+  }
+
+  50% {
+    border-color: rgba(244, 63, 94, 0.8);
+  }
+}
+
+.animate-slot-neon {
+  animation: slot-neon-border 0.8s ease-in-out infinite;
+}
+
+/* Subtle Organic Floating for Mystery Boxes (GPU Composited 60-144 FPS) */
+@keyframes float-slow {
+  0%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -8px, 0);
+  }
+}
+
+.animate-float-slow {
+  animation: float-slow 5.5s ease-in-out infinite;
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  contain: paint;
+}
+
+/* Subtle Aura Breathing for Pedestals & Ambient Glows (GPU Composited) */
+@keyframes aura-breathe {
+  0%, 100% {
+    opacity: 0.35;
+    transform: scale3d(0.96, 0.96, 1);
+  }
+  50% {
+    opacity: 0.65;
+    transform: scale3d(1.04, 1.04, 1);
+  }
+}
+
+.animate-aura-breathe {
+  animation: aura-breathe 4s ease-in-out infinite;
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Ambient Floating Particle Drift (Zero CPU, Pure GPU Layer) */
+@keyframes ambient-dust-drift {
+  0% {
+    transform: translate3d(0, 0, 0) scale(0.8);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.55;
+  }
+  75% {
+    opacity: 0.55;
+  }
+  100% {
+    transform: translate3d(15px, -110px, 0) scale(1.15);
+    opacity: 0;
+  }
+}
+
+.animate-ambient-dust {
+  animation: ambient-dust-drift 8s ease-in-out infinite;
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  pointer-events: none;
+}
+
+/* Soft Card Edge & Sheen Shimmer */
+@keyframes card-shimmer-sweep {
+  0% {
+    transform: translate3d(-150%, 0, 0) skewX(-20deg);
+  }
+  30%, 100% {
+    transform: translate3d(250%, 0, 0) skewX(-20deg);
+  }
+}
+
+.animate-card-shimmer {
+  animation: card-shimmer-sweep 7s ease-in-out infinite;
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Tactical Bomb Detonation Screen Shake */
+@keyframes screen-violent-shake {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  10% { transform: translate(-6px, -4px) rotate(-1deg); }
+  20% { transform: translate(7px, 5px) rotate(1deg); }
+  30% { transform: translate(-5px, 3px) rotate(-0.5deg); }
+  40% { transform: translate(6px, -3px) rotate(0.8deg); }
+  50% { transform: translate(-4px, 4px) rotate(-0.6deg); }
+  60% { transform: translate(5px, 2px) rotate(0.4deg); }
+  70% { transform: translate(-3px, -2px) rotate(-0.3deg); }
+  80% { transform: translate(2px, 3px) rotate(0.2deg); }
+  90% { transform: translate(-1px, -1px) rotate(0deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+.animate-shake {
+  animation: screen-violent-shake 0.65s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+/* ═══ QUANTUM VAULT NEXT-GEN CYBERPUNK HUD ANIMATIONS ═══ */
+@keyframes cyber-hologram-scan {
+  0% {
+    top: -10%;
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.8;
+  }
+  80% {
+    opacity: 0.8;
+  }
+  100% {
+    top: 110%;
+    opacity: 0;
+  }
+}
+
+.animate-hologram-scan {
+  animation: cyber-hologram-scan 2.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes reactor-spin-cw {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes reactor-spin-ccw {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(-360deg); }
+}
+
+.animate-reactor-cw {
+  animation: reactor-spin-cw 18s linear infinite;
+}
+
+.animate-reactor-ccw {
+  animation: reactor-spin-ccw 14s linear infinite;
+}
+
+.animate-reactor-fast {
+  animation: reactor-spin-cw 3s linear infinite;
+}
+
+@keyframes cyber-pulse-glow {
+  0%, 100% {
+    opacity: 0.35;
+    filter: drop-shadow(0 0 10px rgba(6, 182, 212, 0.4));
+  }
+  50% {
+    opacity: 0.85;
+    filter: drop-shadow(0 0 25px rgba(6, 182, 212, 0.9));
+  }
+}
+
+.animate-cyber-pulse {
+  animation: cyber-pulse-glow 2.2s ease-in-out infinite;
+}
+
+@keyframes hazard-stripe-move {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 40px 0;
+  }
+}
+
+.hazard-stripes-pattern {
+  background: repeating-linear-gradient(
+    -45deg,
+    rgba(234, 179, 8, 0.15),
+    rgba(234, 179, 8, 0.15) 10px,
+    rgba(15, 23, 42, 0.8) 10px,
+    rgba(15, 23, 42, 0.8) 20px
+  );
+  background-size: 28px 28px;
+}
+
+.hazard-stripes-locked {
+  background: repeating-linear-gradient(
+    -45deg,
+    rgba(239, 68, 68, 0.25),
+    rgba(239, 68, 68, 0.25) 8px,
+    rgba(15, 17, 23, 0.95) 8px,
+    rgba(15, 17, 23, 0.95) 16px
+  );
+  background-size: 22px 22px;
+}
+
+/* Angular Cyber Chamfer Cut */
+.cyber-chamfer-tl-br {
+  clip-path: polygon(
+    14px 0%,
+    100% 0%,
+    100% calc(100% - 14px),
+    calc(100% - 14px) 100%,
+    0% 100%,
+    0% 14px
+  );
+}
+
+.cyber-chamfer-tr-bl {
+  clip-path: polygon(
+    0% 0%,
+    calc(100% - 14px) 0%,
+    100% 14px,
+    100% 100%,
+    14px 100%,
+    0% calc(100% - 14px)
+  );
+}
+
+/* Holographic emitter beam cone */
+.hologram-cone {
+  background: radial-gradient(
+    ellipse at bottom,
+    rgba(6, 182, 212, 0.28) 0%,
+    rgba(56, 189, 248, 0.1) 40%,
+    transparent 75%
+  );
+}
+
+.hologram-cone-gold {
+  background: radial-gradient(
+    ellipse at bottom,
+    rgba(245, 158, 11, 0.35) 0%,
+    rgba(251, 191, 36, 0.12) 45%,
+    transparent 75%
+  );
+}
+
+.hologram-cone-epic {
+  background: radial-gradient(
+    ellipse at bottom,
+    rgba(168, 85, 247, 0.35) 0%,
+    rgba(217, 70, 239, 0.12) 45%,
+    transparent 75%
+  );
+}
+
+/* ═══ NEW GENERATION: HYPER-CORE VAULT ARCHITECTURE ═══ */
+
+/* 3D Perspective Gyroscopic Ring */
+@keyframes gyro-spin-3d {
+  0% { transform: rotateX(65deg) rotateZ(0deg); }
+  100% { transform: rotateX(65deg) rotateZ(360deg); }
+}
+
+@keyframes gyro-spin-3d-rev {
+  0% { transform: rotateX(65deg) rotateZ(360deg); }
+  100% { transform: rotateX(65deg) rotateZ(0deg); }
+}
+
+.animate-gyro-ring {
+  animation: gyro-spin-3d 10s linear infinite;
+  transform-style: preserve-3d;
+}
+
+.animate-gyro-ring-rev {
+  animation: gyro-spin-3d-rev 7s linear infinite;
+  transform-style: preserve-3d;
+}
+
+/* Hologram Elliptical Pedestal at base of items */
+.hologram-pedestal {
+  background: radial-gradient(
+    ellipse at center,
+    rgba(6, 182, 212, 0.3) 0%,
+    rgba(6, 182, 212, 0.1) 45%,
+    transparent 70%
+  );
+  border-radius: 50%;
+  transform: rotateX(60deg);
+}
+
+/* Electric Conduit Flow */
+@keyframes conduit-flow {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-conduit-flow {
+  background-size: 200% 100%;
+  animation: conduit-flow 3s linear infinite;
+}
+
+/* Mechanical Interlocking Blast Shutters for Sealed Slots */
+.shutter-plate {
+  background: linear-gradient(180deg, #131722 0%, #0B0E17 50%, #07090F 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.8), 0 4px 12px rgba(0, 0, 0, 0.9);
+}
+
+/* Carbon Fiber Mesh Background */
+.bg-carbon-mesh {
+  background-color: #080A10;
+  background-image: 
+    radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 0),
+    radial-gradient(rgba(255, 255, 255, 0.02) 1px, #080A10 0);
+  background-size: 8px 8px;
+  background-position: 0 0, 4px 4px;
+}
+
+/* High-Tech Beveled Vault Pod Shell */
+.vault-pod-shell {
+  background: linear-gradient(165deg, rgba(20, 26, 38, 0.92) 0%, rgba(10, 14, 23, 0.96) 60%, rgba(5, 8, 14, 0.98) 100%);
+  box-shadow: 
+    0 10px 25px -5px rgba(0, 0, 0, 0.8),
+    inset 0 1px 1px rgba(255, 255, 255, 0.12),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.8);
+}
+
+/* ═══ RICH SCI-FI CYBER DECORATIONS ═══ */
+
+/* Diagonal Glass Reflection Specular Sheen */
+.specular-glass-glare {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.12) 0%,
+    rgba(255, 255, 255, 0.04) 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.02) 75%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+/* Caution Hazard Trim */
+.caution-trim-amber {
+  background: repeating-linear-gradient(
+    -45deg,
+    rgba(245, 158, 11, 0.25),
+    rgba(245, 158, 11, 0.25) 6px,
+    rgba(10, 14, 23, 0.9) 6px,
+    rgba(10, 14, 23, 0.9) 12px
+  );
+}
+
+.caution-trim-cyan {
+  background: repeating-linear-gradient(
+    -45deg,
+    rgba(6, 182, 212, 0.25),
+    rgba(6, 182, 212, 0.25) 6px,
+    rgba(10, 14, 23, 0.9) 6px,
+    rgba(10, 14, 23, 0.9) 12px
+  );
+}
+
+/* Glowing Neon Tubes / Fluid Lines */
+.neon-tube-amber {
+  background: linear-gradient(90deg, transparent, rgba(245, 158, 11, 0.8), transparent);
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.6), 0 0 20px rgba(245, 158, 11, 0.3);
+}
+
+.neon-tube-cyan {
+  background: linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.8), transparent);
+  box-shadow: 0 0 10px rgba(6, 182, 212, 0.6), 0 0 20px rgba(6, 182, 212, 0.3);
+}
+
+/* Status Blinking Beacon */
+@keyframes beacon-blink {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+.animate-beacon-green {
+  animation: beacon-blink 1.4s ease-in-out infinite;
+}
+
+.animate-beacon-red {
+  animation: beacon-blink 0.8s ease-in-out infinite;
+}
+
+/* Circuit Pulse Sparkle */
+@keyframes circuit-pulse-spark {
+  0% { transform: scale(0.95); opacity: 0.5; }
+  50% { transform: scale(1.05); opacity: 1; filter: drop-shadow(0 0 12px rgba(245, 158, 11, 0.8)); }
+  100% { transform: scale(0.95); opacity: 0.5; }
+}
+
+.animate-circuit-spark {
+  animation: circuit-pulse-spark 2.5s ease-in-out infinite;
+}
+
+/* ═══ AAA CYBER GACHA CARD ATMOSPHERE & FRAMES ═══ */
+
+/* Legendary Sunburst Background */
+.rarity-bg-legendary {
+  background: 
+    radial-gradient(ellipse at 50% 45%, rgba(245, 158, 11, 0.35) 0%, rgba(217, 119, 6, 0.15) 45%, transparent 75%),
+    linear-gradient(180deg, rgba(30, 20, 10, 0.95) 0%, rgba(15, 12, 8, 0.98) 50%, rgba(8, 7, 5, 1) 100%);
+  border: 1.5px solid rgba(245, 158, 11, 0.8);
+  box-shadow: 
+    0 0 25px rgba(245, 158, 11, 0.25),
+    inset 0 1px 1px rgba(254, 240, 138, 0.4),
+    inset 0 0 20px rgba(245, 158, 11, 0.15);
+}
+
+/* Epic Void Nebula Background */
+.rarity-bg-epic {
+  background: 
+    radial-gradient(ellipse at 50% 45%, rgba(168, 85, 247, 0.35) 0%, rgba(126, 34, 206, 0.15) 45%, transparent 75%),
+    linear-gradient(180deg, rgba(25, 12, 35, 0.95) 0%, rgba(14, 8, 22, 0.98) 50%, rgba(8, 5, 14, 1) 100%);
+  border: 1.5px solid rgba(168, 85, 247, 0.8);
+  box-shadow: 
+    0 0 25px rgba(168, 85, 247, 0.25),
+    inset 0 1px 1px rgba(233, 213, 255, 0.4),
+    inset 0 0 20px rgba(168, 85, 247, 0.15);
+}
+
+/* Rare Ion Flux Background */
+.rarity-bg-rare {
+  background: 
+    radial-gradient(ellipse at 50% 45%, rgba(6, 182, 212, 0.35) 0%, rgba(14, 116, 144, 0.15) 45%, transparent 75%),
+    linear-gradient(180deg, rgba(8, 25, 35, 0.95) 0%, rgba(6, 16, 25, 0.98) 50%, rgba(4, 10, 16, 1) 100%);
+  border: 1.5px solid rgba(6, 182, 212, 0.8);
+  box-shadow: 
+    0 0 25px rgba(6, 182, 212, 0.25),
+    inset 0 1px 1px rgba(165, 243, 252, 0.4),
+    inset 0 0 20px rgba(6, 182, 212, 0.15);
+}
+
+/* Common Titanium Carbon Background */
+.rarity-bg-common {
+  background: 
+    radial-gradient(ellipse at 50% 45%, rgba(148, 163, 184, 0.2) 0%, rgba(71, 85, 105, 0.1) 45%, transparent 75%),
+    linear-gradient(180deg, rgba(20, 26, 38, 0.95) 0%, rgba(13, 17, 25, 0.98) 50%, rgba(8, 10, 16, 1) 100%);
+  border: 1.5px solid rgba(100, 116, 139, 0.6);
+  box-shadow: 
+    0 0 15px rgba(0, 0, 0, 0.5),
+    inset 0 1px 1px rgba(255, 255, 255, 0.2);
+}
+
+/* Heavy Steel Armored Vault Shutter for Sealed Slots */
+.sealed-armored-door {
+  background: 
+    repeating-linear-gradient(
+      -45deg,
+      rgba(239, 68, 68, 0.18),
+      rgba(239, 68, 68, 0.18) 12px,
+      rgba(15, 17, 24, 0.98) 12px,
+      rgba(15, 17, 24, 0.98) 24px
+    );
+  border: 2px solid rgba(239, 68, 68, 0.7);
+  box-shadow: 
+    0 0 30px rgba(239, 68, 68, 0.3),
+    inset 0 0 30px rgba(0, 0, 0, 0.9),
+    inset 0 1px 1px rgba(255, 255, 255, 0.1);
+}
+
+/* Shimmer Light Flare traveling across card */
+@keyframes card-light-flare {
+  0% { transform: translateX(-150%) rotate(25deg); opacity: 0; }
+  20% { opacity: 0.6; }
+  60% { opacity: 0.6; }
+  100% { transform: translateX(250%) rotate(25deg); opacity: 0; }
+}
+
+.animate-card-flare {
+  animation: card-light-flare 4.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}

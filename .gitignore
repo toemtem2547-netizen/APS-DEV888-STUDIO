@@ -1,0 +1,29 @@
+# Dependencies
+node_modules/
+*/node_modules/
+package-lock.json
+
+# Environment variables
+.env
+.env.*
+!.env.example
+backend/.env
+
+# Build outputs
+dist/
+backend/dist/
+frontend/dist/
+build/
+
+# Uploads and temporary files
+backend/uploads/*
+!backend/uploads/.gitkeep
+temp/
+tmp/
+*.log
+
+# IDE & OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
