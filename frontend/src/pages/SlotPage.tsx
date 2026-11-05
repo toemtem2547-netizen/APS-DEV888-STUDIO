@@ -410,51 +410,10 @@ export const SlotPage: React.FC = () => {
     <div className={`slot-page relative min-h-screen overflow-hidden pt-[76px] pb-28 md:pb-10 select-none ${screenShake ? 'slot-screen-shake' : ''}`}>
       <style>{SLOT_CSS}</style>
 
-      {/* Background & Ambient Vault Hoard */}
+      {/* Background */}
       <div className="absolute inset-0 -z-0 overflow-hidden pointer-events-none">
-        <img src={`${IMG}/slot_bg.jpg`} alt="" className="h-full w-full object-cover scale-105 slot-bg-drift" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(10,8,30,0.1)_0%,rgba(7,9,13,0.68)_72%,#07090D_100%)]" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#07090D]/65 via-transparent to-[#07090D]/95" />
-
-        {/* Ambient Golden Light Beams from Top Corners */}
-        <div className="hidden lg:block absolute -top-24 -left-24 w-[520px] h-[520px] bg-amber-500/15 rounded-full blur-[110px]" />
-        <div className="hidden lg:block absolute -top-24 -right-24 w-[520px] h-[520px] bg-yellow-500/15 rounded-full blur-[110px]" />
-        <div className="hidden lg:block absolute bottom-0 left-0 w-[600px] h-[380px] bg-amber-500/20 rounded-full blur-[100px]" />
-        <div className="hidden lg:block absolute bottom-0 right-0 w-[600px] h-[380px] bg-orange-500/20 rounded-full blur-[100px]" />
-
-        {/* ============================================================ */}
-        {/*  LEFT & RIGHT FULL-HEIGHT WINGS: GIANT STANDALONE DRAGONS    */}
-        {/* ============================================================ */}
-
-        {/* LEFT DRAGON: Super Giant Wing (Full Left Viewport) */}
-        <div className="hidden lg:flex absolute left-[-40px] xl:left-[-20px] 2xl:left-[10px] top-[10%] bottom-[8%] w-[32vw] max-w-[560px] items-center justify-center z-10 pointer-events-none slot-dragon-guardian">
-          <div className="relative w-full">
-            <div className="absolute inset-2 bg-gradient-to-br from-amber-400/50 via-red-500/30 to-transparent blur-[80px] rounded-full animate-pulse" />
-            <img
-              src={`${IMG}/deco_golden_dragon.png`}
-              alt="Golden Dragon Left"
-              className="w-full h-auto -scale-x-100 drop-shadow-[0_25px_60px_rgba(0,0,0,0.98)] drop-shadow-[0_0_45px_rgba(251,191,36,0.75)]"
-            />
-            <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 px-5 py-1 rounded-full bg-gradient-to-r from-red-600 via-amber-500 to-yellow-400 text-xs sm:text-sm font-black text-slate-950 uppercase tracking-widest shadow-[0_0_25px_rgba(251,191,36,0.95)] border-2 border-yellow-200 whitespace-nowrap">
-              🐉 GOLDEN DRAGON
-            </div>
-          </div>
-        </div>
-
-        {/* RIGHT DRAGON: Super Giant Wing (Full Right Viewport) */}
-        <div className="hidden lg:flex absolute right-[-40px] xl:right-[-20px] 2xl:right-[10px] top-[10%] bottom-[8%] w-[32vw] max-w-[560px] items-center justify-center z-10 pointer-events-none slot-dragon-guardian">
-          <div className="relative w-full">
-            <div className="absolute inset-2 bg-gradient-to-bl from-amber-400/50 via-red-500/30 to-transparent blur-[80px] rounded-full animate-pulse" />
-            <img
-              src={`${IMG}/deco_golden_dragon.png`}
-              alt="Golden Dragon Right"
-              className="w-full h-auto drop-shadow-[0_25px_60px_rgba(0,0,0,0.98)] drop-shadow-[0_0_45px_rgba(251,191,36,0.7)]"
-            />
-            <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 px-5 py-1 rounded-full bg-gradient-to-r from-yellow-400 via-amber-500 to-red-600 text-xs sm:text-sm font-black text-slate-950 uppercase tracking-widest shadow-[0_0_25px_rgba(251,191,36,0.95)] border-2 border-yellow-200 whitespace-nowrap">
-              🐉 GOLDEN DRAGON
-            </div>
-          </div>
-        </div>
+        <img src={`${IMG}/slot_bg.jpg`} alt="" className="h-full w-full object-cover scale-100" />
+        <div className="absolute inset-0 bg-black/30" />
 
         {/* Twinkling Sparkles & Floating Gold Dust */}
         {Array.from({ length: 28 }).map((_, i) => (
@@ -826,7 +785,7 @@ const BigAmount: React.FC<{ amount: number }> = ({ amount }) => {
 const SLOT_CSS = `
 .slot-page { font-family: 'Inter','Noto Sans Thai',sans-serif; }
 .slot-bg-drift { animation: slotDrift 30s ease-in-out infinite alternate; }
-@keyframes slotDrift { from { transform: scale(1.05) translateX(0); } to { transform: scale(1.12) translateX(-1.5%); } }
+@keyframes slotDrift { from { transform: scale(1) translateX(0); } to { transform: scale(1) translateX(0); } }
 .slot-sparkle { position:absolute; width:4px; height:4px; border-radius:9999px; background:#ffe9a8; box-shadow:0 0 10px 3px rgba(255,214,102,.8); animation: slotTwinkle 4s ease-in-out infinite; opacity:0; }
 @keyframes slotTwinkle { 0%,100% { opacity:0; transform:scale(.4);} 50% { opacity:1; transform:scale(1.2);} }
 
