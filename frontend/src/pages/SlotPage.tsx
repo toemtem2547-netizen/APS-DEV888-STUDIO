@@ -188,6 +188,7 @@ export const SlotPage: React.FC = () => {
   const [bigWins, setBigWins] = useState<any[]>([]);
   const [mascotSrc, setMascotSrc] = useState(`${IMG}/slot_mascot.png`);
   const [logoSrc, setLogoSrc] = useState(`${IMG}/slot_logo.png`);
+  const [screenShake, setScreenShake] = useState(false);
   const timers = useRef<number[]>([]);
 
   const bets = config?.bets?.length ? config.bets : [1, 2, 5, 10, 20, 50, 100];
@@ -253,16 +254,21 @@ export const SlotPage: React.FC = () => {
   const activeColor = activeLine >= 0 && winLines[activeLine] ? LINE_COLORS[winLines[activeLine].lineIndex % 20] : '#FACC15';
 
   /* ---------------- Effects ---------------- */
+  const triggerScreenShake = () => {
+    setScreenShake(true);
+    window.setTimeout(() => setScreenShake(false), 950);
+  };
+
   const coinRain = (power = 1) => {
-    const colors = ['#FFD700', '#FFC107', '#FFE57F', '#F59E0B', '#FFF8E1'];
-    const end = Date.now() + 1400 * power;
+    const colors = ['#FFD700', '#FFC107', '#FFE57F', '#F59E0B', '#FFF8E1', '#E11D48', '#9333EA'];
+    const end = Date.now() + 1800 * power;
     const frame = () => {
-      confetti({ particleCount: 6, angle: 60, spread: 60, origin: { x: 0, y: 0.75 }, colors, shapes: ['circle'], scalar: 1.6, gravity: 1.2 });
-      confetti({ particleCount: 6, angle: 120, spread: 60, origin: { x: 1, y: 0.75 }, colors, shapes: ['circle'], scalar: 1.6, gravity: 1.2 });
+      confetti({ particleCount: 10 * power, angle: 60, spread: 75, origin: { x: 0, y: 0.7 }, colors, shapes: ['circle'], scalar: 1.8, gravity: 1.1 });
+      confetti({ particleCount: 10 * power, angle: 120, spread: 75, origin: { x: 1, y: 0.7 }, colors, shapes: ['circle'], scalar: 1.8, gravity: 1.1 });
       if (Date.now() < end) requestAnimationFrame(frame);
     };
     frame();
-    confetti({ particleCount: 140 * power, spread: 110, startVelocity: 45, origin: { y: 0.55 }, colors, shapes: ['circle', 'square'], scalar: 1.4 });
+    confetti({ particleCount: 180 * power, spread: 130, startVelocity: 55, origin: { y: 0.5 }, colors, shapes: ['circle', 'square'], scalar: 1.6 });
   };
 
   /* ---------------- Spin ---------------- */
@@ -334,13 +340,16 @@ export const SlotPage: React.FC = () => {
       const ratio = data.totalWin / data.bet;
       if (data.isJackpot) {
         setOverlay({ kind: 'JACKPOT', amount: data.totalWin });
-        coinRain(3);
+        triggerScreenShake();
+        coinRain(3.5);
         if (sound) playWinSound('LEGENDARY');
       } else if (ratio >= 10) {
         setOverlay({ kind: ratio >= 50 ? 'EPIC' : ratio >= 25 ? 'MEGA' : 'BIG', amount: data.totalWin });
-        coinRain(ratio >= 50 ? 2.5 : ratio >= 25 ? 1.8 : 1.2);
+        triggerScreenShake();
+        coinRain(ratio >= 50 ? 3 : ratio >= 25 ? 2.2 : 1.5);
         if (sound) playWinSound(ratio >= 25 ? 'LEGENDARY' : 'EPIC');
       } else if (data.totalWin > 0 && sound) {
+        if (ratio >= 3) triggerScreenShake();
         playWinSound(ratio >= 3 ? 'RARE' : 'COMMON');
       }
 
@@ -398,7 +407,7 @@ export const SlotPage: React.FC = () => {
 
   /* ================================================================== */
   return (
-    <div className="slot-page relative min-h-screen overflow-hidden pt-[76px] pb-28 md:pb-10 select-none">
+    <div className={`slot-page relative min-h-screen overflow-hidden pt-[76px] pb-28 md:pb-10 select-none ${screenShake ? 'slot-screen-shake' : ''}`}>
       <style>{SLOT_CSS}</style>
 
       {/* Background & Ambient Vault Hoard */}
@@ -720,30 +729,31 @@ export const SlotPage: React.FC = () => {
 
       {/* ---------- Celebration overlays ---------- */}
       {overlay && (
-        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/70 backdrop-blur-sm" onClick={() => setOverlay(null)}>
+        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/75 backdrop-blur-md" onClick={() => setOverlay(null)}>
           <div className="slot-rays" />
+          <div className="slot-gold-explosion" />
           <div className="relative text-center slot-overlay-pop px-4">
             {overlay.kind === 'FREE' ? (
               <>
-                <img src={`${IMG}/sym_scatter.jpg`} alt="" className="w-40 h-40 sm:w-52 sm:h-52 mx-auto rounded-3xl slot-tile-win mb-4" />
+                <img src={`${IMG}/sym_scatter.jpg`} alt="" className="w-40 h-40 sm:w-52 sm:h-52 mx-auto rounded-3xl slot-tile-win mb-4 drop-shadow-[0_0_35px_rgba(217,70,239,0.9)]" />
                 <div className="slot-big-title" data-text="FREE SPINS">FREE SPINS</div>
-                <div className="slot-big-amount">{overlay.spins} ครั้ง · x{config?.freeSpinMultiplier || 2}</div>
+                <div className="slot-big-amount text-yellow-300 drop-shadow-[0_0_20px_rgba(250,204,21,0.9)]">{overlay.spins} ครั้ง · x{config?.freeSpinMultiplier || 2}</div>
               </>
             ) : overlay.kind === 'FREE_END' ? (
               <>
                 <div className="slot-big-title text-[2.6rem] sm:text-[4rem]" data-text="TOTAL FREE WIN">TOTAL FREE WIN</div>
-                <div className="slot-big-amount">฿{fmt(overlay.amount || 0)}</div>
+                <div className="slot-big-amount text-yellow-300 drop-shadow-[0_0_25px_rgba(250,204,21,1)]">฿{fmt(overlay.amount || 0)}</div>
               </>
             ) : (
               <>
-                {overlay.kind === 'JACKPOT' && <Crown className="w-20 h-20 mx-auto text-yellow-300 drop-shadow-[0_0_25px_rgba(250,204,21,1)] mb-2" />}
+                {overlay.kind === 'JACKPOT' && <Crown className="w-24 h-24 mx-auto text-yellow-300 drop-shadow-[0_0_35px_rgba(250,204,21,1)] mb-2 animate-bounce" />}
                 <div className={`slot-big-title ${overlay.kind === 'JACKPOT' ? 'slot-jackpot-title' : ''}`} data-text={`${overlay.kind} WIN`}>
-                  {overlay.kind === 'JACKPOT' ? 'JACKPOT!' : `${overlay.kind} WIN`}
+                  {overlay.kind === 'JACKPOT' ? '💥 JACKPOT! 💥' : `💥 ${overlay.kind} WIN 💥`}
                 </div>
                 <BigAmount amount={overlay.amount || 0} />
               </>
             )}
-            <div className="text-zinc-400 text-xs mt-6">แตะเพื่อปิด</div>
+            <div className="text-zinc-400 text-xs mt-6 tracking-widest uppercase">แตะเพื่อปิด</div>
           </div>
         </div>
       )}
@@ -932,6 +942,25 @@ const SLOT_CSS = `
 @keyframes slotTicker { from { transform:translateX(0);} to { transform:translateX(-50%);} }
 
 /* Overlays */
+.slot-screen-shake { animation: slotShake 0.65s cubic-bezier(0.36, 0.07, 0.19, 0.97) both; }
+@keyframes slotShake {
+  10%, 90% { transform: translate3d(-3px, 2px, 0) rotate(-0.5deg); }
+  20%, 80% { transform: translate3d(4px, -3px, 0) rotate(0.8deg); }
+  30%, 50%, 70% { transform: translate3d(-6px, 4px, 0) rotate(-1deg); }
+  40%, 60% { transform: translate3d(6px, -4px, 0) rotate(1deg); }
+}
+.slot-gold-explosion {
+  position: absolute;
+  inset: -20px;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(255, 215, 0, 0.45) 0%, rgba(255, 107, 0, 0.2) 50%, transparent 70%);
+  animation: slotPulseBlast 1.2s ease-out infinite;
+  pointer-events: none;
+}
+@keyframes slotPulseBlast {
+  0% { transform: scale(0.6); opacity: 0.9; }
+  100% { transform: scale(1.4); opacity: 0; }
+}
 .slot-rays { position:absolute; width:180vmax; height:180vmax; background:repeating-conic-gradient(from 0deg, rgba(255,210,80,.18) 0deg 10deg, transparent 10deg 20deg); animation: slotRays 18s linear infinite; -webkit-mask-image: radial-gradient(circle, #000 0%, transparent 55%); mask-image: radial-gradient(circle, #000 0%, transparent 55%); }
 @keyframes slotRays { to { transform: rotate(360deg);} }
 .slot-overlay-pop { animation: slotOverlayPop .7s cubic-bezier(.34,1.56,.64,1); }

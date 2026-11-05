@@ -95,29 +95,61 @@ export function playWinSound(rarity = 'LEGENDARY', isSalt = false) {
       return;
     }
 
+    // Heavy bass boom for big wins
+    if (rarity === 'LEGENDARY' || rarity === 'EPIC') {
+      const subOsc = ctx.createOscillator();
+      const subGain = ctx.createGain();
+      subOsc.type = 'sine';
+      subOsc.frequency.setValueAtTime(130, now);
+      subOsc.frequency.exponentialRampToValueAtTime(35, now + 0.6);
+      subGain.gain.setValueAtTime(0.45, now);
+      subGain.gain.exponentialRampToValueAtTime(0.001, now + 0.65);
+      subOsc.connect(subGain);
+      subGain.connect(ctx.destination);
+      subOsc.start(now);
+      subOsc.stop(now + 0.65);
+    }
+
     const freqs =
       rarity === 'LEGENDARY'
-        ? [523.25, 659.25, 783.99, 1046.5, 1318.51] // C5, E5, G5, C6, E6 grand fanfare
+        ? [523.25, 659.25, 783.99, 1046.5, 1318.51, 1567.98] // C5, E5, G5, C6, E6, G6 grand fanfare
         : rarity === 'EPIC'
-          ? [440, 554.37, 659.25, 880] // A4, C#5, E5, A5
+          ? [440, 554.37, 659.25, 880, 1108.73] // A4, C#5, E5, A5, C#6
           : [523.25, 659.25, 783.99]; // C5, E5, G5 bright celebratory chord
 
     freqs.forEach((freq, idx) => {
       const osc = ctx.createOscillator();
       const gain = ctx.createGain();
 
-      osc.type = 'sine';
+      osc.type = rarity === 'LEGENDARY' ? 'sawtooth' : 'sine';
       osc.frequency.setValueAtTime(freq, now + idx * 0.08);
 
-      gain.gain.setValueAtTime(0.22, now + idx * 0.08);
-      gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.08 + 0.45);
+      gain.gain.setValueAtTime(0.28, now + idx * 0.08);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.08 + 0.55);
 
       osc.connect(gain);
       gain.connect(ctx.destination);
 
       osc.start(now + idx * 0.08);
-      osc.stop(now + idx * 0.08 + 0.45);
+      osc.stop(now + idx * 0.08 + 0.55);
     });
+
+    // Rapid coin shower clinking sound (กริ๊งๆๆๆๆ เหรียญทะลัก)
+    if (rarity === 'LEGENDARY' || rarity === 'EPIC') {
+      for (let i = 0; i < 12; i++) {
+        const coinTime = now + 0.25 + i * 0.06;
+        const cOsc = ctx.createOscillator();
+        const cGain = ctx.createGain();
+        cOsc.type = 'triangle';
+        cOsc.frequency.setValueAtTime(2400 + (i % 4) * 350, coinTime);
+        cGain.gain.setValueAtTime(0.18, coinTime);
+        cGain.gain.exponentialRampToValueAtTime(0.0001, coinTime + 0.045);
+        cOsc.connect(cGain);
+        cGain.connect(ctx.destination);
+        cOsc.start(coinTime);
+        cOsc.stop(coinTime + 0.045);
+      }
+    }
   } catch (err) { }
 }
 
