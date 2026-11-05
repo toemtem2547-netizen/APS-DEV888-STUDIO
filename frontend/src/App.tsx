@@ -118,6 +118,9 @@ const AdminLayout: React.FC = () => {
 };
 
 const StorefrontLayout: React.FC = () => {
+  const location = useLocation();
+  const isSlotPage = location.pathname === '/slot';
+
   return (
     <div className="min-h-screen bg-[#07090D] text-white flex flex-col justify-between selection:bg-indigo-500 selection:text-white">
       <Navbar />
@@ -138,7 +141,7 @@ const StorefrontLayout: React.FC = () => {
         </Routes>
       </main>
 
-      <Footer />
+      {!isSlotPage && <Footer />}
       <MobileNav />
 
       {/* Customer Modals */}
