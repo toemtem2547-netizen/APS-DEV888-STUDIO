@@ -611,21 +611,7 @@ export const SlotPage: React.FC = () => {
                   </div>
                 ))}
 
-                {/* Paylines overlay */}
-                <svg viewBox="0 0 500 300" className="absolute inset-0 w-full h-full pointer-events-none z-10" preserveAspectRatio="none">
-                  {linesToDraw.map((w) => {
-                    const line = paylines[w.lineIndex];
-                    if (!line) return null;
-                    const pts = line.map((row, reel) => `${reel * 100 + 50},${row * 100 + 50}`).join(' ');
-                    const c = LINE_COLORS[w.lineIndex % 20];
-                    return (
-                      <g key={w.lineIndex}>
-                        <polyline points={pts} fill="none" stroke={c} strokeWidth="9" strokeOpacity="0.25" strokeLinejoin="round" strokeLinecap="round" />
-                        <polyline points={pts} fill="none" stroke={c} strokeWidth="3.5" strokeLinejoin="round" strokeLinecap="round" className="slot-line-dash" style={{ filter: `drop-shadow(0 0 6px ${c})` }} />
-                      </g>
-                    );
-                  })}
-                </svg>
+                {/* Paylines overlay (Clean view: no dashed line) */}
 
                 {/* Line win tag */}
                 {!spinning && activeLine >= 0 && winLines[activeLine] && (
