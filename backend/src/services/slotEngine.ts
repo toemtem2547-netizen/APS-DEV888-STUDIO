@@ -91,6 +91,7 @@ export interface SpinOutcome {
   freeSpinsAwarded: number;
   isJackpot: boolean;
   baseWin: number; // before free-spin multiplier
+  fiveOfAKindCount: number;
 }
 
 function pickSymbol(reel: number, exclude: SlotSymbol[] = []): SlotSymbol {
@@ -155,7 +156,16 @@ export function evaluateGrid(grid: SlotSymbol[][], totalBet: number): SpinOutcom
   const scatterCount = scatterPositions.length;
   const sc = SCATTER_PAY[Math.min(scatterCount, 5)];
   const scatterWin = sc ? Number((sc.multiplier * totalBet).toFixed(2)) : 0;
-  const freeSpinsAwarded = sc ? sc.freeSpins : 0;
+  
+  // Award free spins from Scatter (3+ scatters)
+  let freeSpinsAwarded = sc ? sc.freeSpins : 0;
+
+  // Rule 2: เรียงแถวกัน 5 แถว (5 of a kind) ได้โบนัส Free Spins เพิ่ม 10 ครั้งต่อไลน์ที่ติด 5 ตัว
+  const fiveOfAKindWins = lineWins.filter((w) => w.count === 5);
+  const fiveOfAKindCount = fiveOfAKindWins.length;
+  if (fiveOfAKindCount > 0) {
+    freeSpinsAwarded += fiveOfAKindCount * 10;
+  }
 
   const baseWin = Number((lineWins.reduce((s, w) => s + w.amount, 0) + scatterWin).toFixed(2));
 
@@ -168,5 +178,6 @@ export function evaluateGrid(grid: SlotSymbol[][], totalBet: number): SpinOutcom
     freeSpinsAwarded,
     isJackpot: scatterCount >= 5,
     baseWin,
+    fiveOfAKindCount,
   };
 }

@@ -576,10 +576,14 @@ export const SlotPage: React.FC = () => {
             <div className="slot-frame-bolts" />
             {/* Free spins banner */}
             {freeLeft > 0 || (result?.isFreeSpin && !spinning) ? (
-              <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-20 slot-free-banner">
-                FREE SPINS {Math.max(0, freeTotal - freeLeft)} / {freeTotal} · x{config?.freeSpinMultiplier || 2}
+              <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-20 slot-free-banner flex items-center gap-1.5">
+                <span>🔥 FREE SPINS {Math.max(0, freeTotal - freeLeft)} / {freeTotal} · x{config?.freeSpinMultiplier || 2}</span>
               </div>
-            ) : null}
+            ) : (
+              <div className="hidden sm:flex absolute -top-3.5 left-1/2 -translate-x-1/2 z-20 px-3.5 py-0.5 rounded-full bg-black/80 border border-yellow-400/40 text-[10px] font-black text-yellow-300 tracking-wider shadow-lg whitespace-nowrap">
+                ⭐ สัญลักษณ์เรียง 5 แถว หรือ 3 SCATTER รับโบนัสฟรีสปินทันที! ⭐
+              </div>
+            )}
 
             <div className="slot-window relative">
               <div className="relative grid grid-cols-5 aspect-[5/3]">
@@ -760,7 +764,7 @@ export const SlotPage: React.FC = () => {
               <div className="flex items-center gap-3 rounded-2xl bg-white/5 border border-fuchsia-500/30 p-3">
                 <div className="w-20 h-20 shrink-0"><SymbolTile sym="SCATTER" /></div>
                 <p className="text-xs text-zinc-300">
-                  <b className="text-fuchsia-300">SCATTER</b> ที่ไหนก็ได้ · 3 = x2 + 8 ฟรีสปิน · 4 = x10 + 12 ฟรีสปิน · <b className="text-yellow-300">5 = JACKPOT</b> + 15 ฟรีสปิน · ฟรีสปินรางวัล x{config?.freeSpinMultiplier || 2}
+                  <b className="text-fuchsia-300">SCATTER & 5 OF A KIND</b> · 3 SCATTER = x2 + 8 ฟรีสปิน · 4 SCATTER = x10 + 12 ฟรีสปิน · <b className="text-yellow-300">5 SCATTER = JACKPOT</b> + 15 ฟรีสปิน · <b className="text-emerald-300">เรียงครบ 5 แถว</b> รับเพิ่ม 10 ฟรีสปิน! · ฟรีสปินรางวัล x{config?.freeSpinMultiplier || 2}
                 </p>
               </div>
             </div>
