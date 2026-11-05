@@ -704,6 +704,57 @@ export const Home: React.FC = () => {
         </div>
       </section>
 
+      {/* 4.5 NEW SLOT GAME SHOWCASE BANNER */}
+      <section className="max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative rounded-3xl overflow-hidden border-2 border-yellow-500/40 bg-gradient-to-r from-[#1a103c] via-[#241352] to-[#0c0926] p-6 sm:p-10 shadow-[0_0_50px_rgba(234,179,8,0.25)] flex flex-col lg:flex-row items-center justify-between gap-8 group">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(250,204,21,0.18)_0%,transparent_60%)] pointer-events-none" />
+          <div className="space-y-4 max-w-xl z-10 text-center lg:text-left">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gradient-to-r from-yellow-400 to-amber-500 text-slate-950 font-black text-xs tracking-wider uppercase shadow-lg shadow-yellow-500/30">
+              <Sparkles className="w-4 h-4" />
+              <span>เกมใหม่ล่าสุด · NEW 5x3 SLOT</span>
+            </div>
+            <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight">
+              GOLDEN CAT HEIST
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-amber-200 to-yellow-500 text-2xl sm:text-4xl mt-1">
+                สล็อตแมวมาเฟียปล้นเซฟทองคำ
+              </span>
+            </h2>
+            <p className="text-zinc-300 text-sm sm:text-base leading-relaxed">
+              สัมผัสความมันส์ระดับคาสิโนพรีเมียม 20 เพย์ไลน์ โบนัส <strong className="text-yellow-300">WILD ทะลัก</strong>, 
+              ลุ้นฟรีสปินคูณสองจาก <strong className="text-purple-300">SCATTER เพชรม่วง</strong> และแจ็กพอตโปรเกรสซีฟสะสมแตกจริง!
+            </p>
+            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
+              <Link
+                to="/slot"
+                className="px-7 py-3.5 rounded-2xl font-black text-sm text-slate-950 bg-gradient-to-r from-yellow-400 via-amber-300 to-yellow-500 hover:brightness-110 active:scale-95 transition-all shadow-xl shadow-yellow-500/30 flex items-center gap-2"
+              >
+                <Zap className="w-4 h-4 fill-current" />
+                <span>เข้าเล่นสล็อตทันที</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+              <div className="flex items-center gap-3 text-xs text-yellow-200/80 font-bold">
+                <span>⚡ เริ่มต้นเบทละ ฿1</span>
+                <span>•</span>
+                <span>👑 แจ็กพอตแตกง่าย</span>
+                <span>•</span>
+                <span>💎 RTP 94%</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="relative z-10 w-full max-w-md lg:max-w-lg">
+            <Link to="/slot" className="block relative group-hover:scale-105 transition-transform duration-500">
+              <div className="absolute inset-0 bg-yellow-400/20 rounded-3xl blur-2xl group-hover:bg-yellow-400/35 transition-all" />
+              <img
+                src="/images/slots/slot_banner.jpg"
+                alt="Golden Cat Heist Slot"
+                className="relative z-10 w-full rounded-2xl border border-yellow-500/40 shadow-2xl object-cover"
+              />
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* 5. PROMOTIONS BANNER SECTION */}
       {promotions.length > 0 && (
         <section className="max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 space-y-6">

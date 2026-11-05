@@ -67,6 +67,12 @@ export const platformApi = {
   getWheelPool: () => api.get('/wheel'),
   spinWheel: () => api.post('/wheel/spin'),
   getWheelHistory: (limit = 20) => api.get(`/wheel/history?limit=${limit}`),
+
+  // Golden Cat Heist Slot (สล็อต 5x3)
+  getSlotConfig: () => api.get('/slot'),
+  spinSlot: (bet: number) => api.post('/slot/spin', { bet }),
+  getSlotHistory: (limit = 20) => api.get(`/slot/history?limit=${limit}`),
+  getSlotBigWins: () => api.get('/slot/big-wins'),
 };
 
 export default api;

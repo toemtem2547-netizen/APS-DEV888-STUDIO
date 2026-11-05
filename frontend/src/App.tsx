@@ -18,6 +18,7 @@ import { TopupPage } from './pages/TopupPage';
 import { MysteryBoxPage } from './pages/MysteryBoxPage';
 import { GachaPage } from './pages/GachaPage';
 import { WheelPage } from './pages/WheelPage';
+import { SlotPage } from './pages/SlotPage';
 import { PromotionsPage } from './pages/PromotionsPage';
 import { InventoryPage } from './pages/InventoryPage';
 import { OrdersPage } from './pages/OrdersPage';
@@ -128,6 +129,7 @@ const StorefrontLayout: React.FC = () => {
           <Route path="/mystery-box" element={<MysteryBoxPage />} />
           <Route path="/gacha" element={<GachaPage />} />
           <Route path="/wheel" element={<WheelPage />} />
+          <Route path="/slot" element={<SlotPage />} />
           <Route path="/promotions" element={<PromotionsPage />} />
           <Route path="/inventory" element={<InventoryPage />} />
           <Route path="/orders" element={<OrdersPage />} />

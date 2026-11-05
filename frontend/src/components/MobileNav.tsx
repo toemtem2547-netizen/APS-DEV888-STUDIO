@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Zap, Package, Gift, Trophy, ShieldCheck, User, Sparkles } from 'lucide-react';
+import { Zap, Package, Gift, Trophy, ShieldCheck, User, Sparkles, Disc } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useSettings } from '../context/SettingsContext';
 
@@ -44,6 +44,13 @@ export const MobileNav: React.FC = () => {
       path: '/wheel',
       icon: Sparkles,
       isDisabled: !wheelEnabled,
+    },
+    {
+      label: 'สล็อต',
+      path: '/slot',
+      icon: Disc,
+      isGold: true,
+      isDisabled: (settings as any).game_slot_enabled === 'false',
     },
     { label: 'คลัง', path: '/inventory', icon: ShieldCheck, requiresAuth: true },
   ];

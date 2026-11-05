@@ -12,6 +12,7 @@ import rewardRoutes from './routes/rewardRoutes';
 import settingsRoutes from './routes/settingsRoutes';
 import gachaRoutes from './routes/gachaRoutes';
 import wheelRoutes from './routes/wheelRoutes';
+import slotRoutes from './routes/slotRoutes';
 import adminRoutes from './routes/adminRoutes';
 
 export function createApp() {
@@ -42,6 +43,7 @@ export function createApp() {
   app.use('/api/mystery-boxes', mysteryBoxRoutes);
   app.use('/api/gacha', gachaRoutes);
   app.use('/api/wheel', wheelRoutes);
+  app.use('/api/slot', slotRoutes);
   app.use('/api/orders', orderRoutes);
   app.use('/api/wallet', walletRoutes);
   app.use('/api/promotions', promotionRoutes);
