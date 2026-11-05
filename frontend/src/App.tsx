@@ -19,6 +19,7 @@ import { MysteryBoxPage } from './pages/MysteryBoxPage';
 import { GachaPage } from './pages/GachaPage';
 import { WheelPage } from './pages/WheelPage';
 import { SlotPage } from './pages/SlotPage';
+import { SlotLobbyPage } from './pages/SlotLobbyPage';
 import { PromotionsPage } from './pages/PromotionsPage';
 import { InventoryPage } from './pages/InventoryPage';
 import { OrdersPage } from './pages/OrdersPage';
@@ -119,7 +120,7 @@ const AdminLayout: React.FC = () => {
 
 const StorefrontLayout: React.FC = () => {
   const location = useLocation();
-  const isSlotPage = location.pathname === '/slot';
+  const isSlotGameRoom = location.pathname.startsWith('/slot') && location.pathname !== '/slots';
 
   return (
     <div className="min-h-screen bg-[#07090D] text-white flex flex-col justify-between selection:bg-indigo-500 selection:text-white">
@@ -132,6 +133,7 @@ const StorefrontLayout: React.FC = () => {
           <Route path="/mystery-box" element={<MysteryBoxPage />} />
           <Route path="/gacha" element={<GachaPage />} />
           <Route path="/wheel" element={<WheelPage />} />
+          <Route path="/slots" element={<SlotLobbyPage />} />
           <Route path="/slot" element={<SlotPage />} />
           <Route path="/promotions" element={<PromotionsPage />} />
           <Route path="/inventory" element={<InventoryPage />} />
@@ -141,7 +143,7 @@ const StorefrontLayout: React.FC = () => {
         </Routes>
       </main>
 
-      {!isSlotPage && <Footer />}
+      {!isSlotGameRoom && <Footer />}
       <MobileNav />
 
       {/* Customer Modals */}

@@ -475,7 +475,12 @@ export const SlotPage: React.FC = () => {
       <div className="relative z-10 mx-auto w-full max-w-[1320px] px-2 sm:px-4">
         {/* ---------- Top bar ---------- */}
         <div className="flex items-center justify-between gap-2 mb-2 sm:mb-3 relative">
-          <Link to="/" className="slot-round-btn relative z-20" title="กลับหน้าแรก"><Home className="w-5 h-5" /></Link>
+          <div className="flex items-center gap-2 relative z-20">
+            <Link to="/slots" className="slot-round-btn" title="กลับไปเลือกล็อบบี้ห้องเกม"><Home className="w-5 h-5" /></Link>
+            <Link to="/slots" className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/60 border border-yellow-400/40 text-[11px] font-black text-yellow-300 hover:text-white hover:border-yellow-300 transition-all shadow-md">
+              <span>← เลือกล็อบบี้ห้องสล็อต</span>
+            </Link>
+          </div>
 
           {/* Jackpot with flanking Dragon & Chest Ornaments */}
           <div className="relative flex-1 max-w-[580px] mx-auto flex items-center justify-center">

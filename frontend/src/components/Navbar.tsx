@@ -73,8 +73,8 @@ export const Navbar: React.FC = () => {
       disabled: !wheelEnabled,
     },
     {
-      label: (settings as any).game_slot_title?.split('(')[0]?.trim() || 'สล็อตแมวทอง',
-      path: '/slot',
+      label: 'ห้องเกมสล็อต',
+      path: '/slots',
       icon: Disc,
       disabled: (settings as any).game_slot_enabled === 'false',
     },

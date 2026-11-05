@@ -47,7 +47,7 @@ export const MobileNav: React.FC = () => {
     },
     {
       label: 'สล็อต',
-      path: '/slot',
+      path: '/slots',
       icon: Disc,
       isGold: true,
       isDisabled: (settings as any).game_slot_enabled === 'false',
