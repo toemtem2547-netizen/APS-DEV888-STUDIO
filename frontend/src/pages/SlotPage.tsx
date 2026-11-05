@@ -493,6 +493,21 @@ export const SlotPage: React.FC = () => {
           {/*  LEFT SIDE OF SLOT MACHINE: TREASURES                        */}
           {/* ============================================================ */}
 
+          {/* Diamond Scatter Vault (Top-Left of Machine Frame) */}
+          <div className="hidden lg:block absolute -left-12 xl:-left-20 2xl:-left-24 top-[18%] w-32 xl:w-36 z-30 pointer-events-none slot-float">
+            <div className="relative">
+              <div className="absolute inset-0 bg-fuchsia-500/35 blur-2xl rounded-full animate-pulse" />
+              <img
+                src={`${IMG}/sym_scatter.png`}
+                alt=""
+                className="w-full drop-shadow-[0_12px_24px_rgba(217,70,239,0.7)]"
+              />
+              <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 px-2.5 py-0.5 rounded-full bg-gradient-to-r from-purple-600 via-fuchsia-500 to-pink-500 text-[9px] font-black text-white uppercase tracking-wider shadow-md whitespace-nowrap border border-pink-200/60">
+                💎 SCATTER VAULT
+              </div>
+            </div>
+          </div>
+
           {/* Left Treasure Base: 1 Large Red Jewel Chest + Money Bag */}
           <div className="hidden lg:block absolute -left-12 xl:-left-20 2xl:-left-28 bottom-[-16px] w-40 xl:w-48 2xl:w-56 z-30 pointer-events-none">
             <div className="relative">
@@ -552,35 +567,6 @@ export const SlotPage: React.FC = () => {
                 src={`${IMG}/deco_coin_stack.png`}
                 alt=""
                 className="w-[36%] absolute -bottom-3 right-0 rotate-[6deg] drop-shadow-[0_10px_18px_rgba(0,0,0,0.9)]"
-              />
-            </div>
-          </div>
-
-          {/* ============================================================ */}
-          {/*  CENTER BOTTOM FLOOR: DIAMOND SCATTER VAULT & TREASURE       */}
-          {/* ============================================================ */}
-          <div className="hidden md:flex absolute -bottom-7 left-1/2 -translate-x-1/2 z-30 items-center justify-center pointer-events-none">
-            <div className="relative flex items-end justify-center">
-              <img
-                src={`${IMG}/deco_coin_stack.png`}
-                alt=""
-                className="w-14 xl:w-16 -mr-4 mb-1 rotate-[-14deg] drop-shadow-[0_8px_15px_rgba(0,0,0,0.85)]"
-              />
-              <div className="relative w-28 xl:w-32 slot-float">
-                <div className="absolute inset-0 bg-fuchsia-500/45 blur-2xl rounded-full animate-pulse" />
-                <img
-                  src={`${IMG}/sym_scatter.png`}
-                  alt=""
-                  className="w-full drop-shadow-[0_12px_24px_rgba(217,70,239,0.75)]"
-                />
-                <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 px-2.5 py-0.5 rounded-full bg-gradient-to-r from-purple-600 via-fuchsia-500 to-pink-500 text-[9px] font-black text-white uppercase tracking-wider shadow-md whitespace-nowrap border border-pink-200/60">
-                  💎 DIAMOND VAULT
-                </div>
-              </div>
-              <img
-                src={`${IMG}/sym_bag.png`}
-                alt=""
-                className="w-14 xl:w-16 -ml-4 mb-1 rotate-[14deg] drop-shadow-[0_8px_15px_rgba(0,0,0,0.85)]"
               />
             </div>
           </div>
