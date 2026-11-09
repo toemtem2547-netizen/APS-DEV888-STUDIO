@@ -431,7 +431,7 @@ export const SlotPage: React.FC = () => {
         ))}
       </div>
 
-      <div className="relative z-10 mx-auto w-full max-w-[1320px] px-2 sm:px-4">
+      <div className="relative z-10 mx-auto w-full max-w-[1020px] px-2 sm:px-4 scale-[0.88] 2xl:scale-95 origin-top">
         {/* ---------- Top bar ---------- */}
         <div className="flex items-center justify-between gap-2 mb-2 sm:mb-3 relative">
           <div className="flex items-center gap-2 relative z-20">
@@ -545,7 +545,7 @@ export const SlotPage: React.FC = () => {
           </div>
 
           {/* Machine frame */}
-          <div className="slot-frame relative w-full lg:w-[78%] xl:w-[76%]">
+          <div className="slot-frame relative w-full lg:w-[72%] xl:w-[70%]">
             <div className="slot-frame-bolts" />
             {/* Free spins banner */}
             {freeLeft > 0 || (result?.isFreeSpin && !spinning) ? (
@@ -597,7 +597,7 @@ export const SlotPage: React.FC = () => {
         </div>
 
         {/* Control bar wrapper with foreground coin spill */}
-        <div className="relative mt-3 sm:mt-5 mx-auto lg:w-[86%]">
+        <div className="relative mt-2 sm:mt-3 mx-auto lg:w-[76%]">
           {/* Gold bars & continuous coin spill strip behind controls */}
           <div className="absolute -top-10 -bottom-3 inset-x-[-4%] pointer-events-none z-0 overflow-visible opacity-90">
             <img src={`${IMG}/vault_coins_strip.svg`} alt="" className="w-full h-full object-cover filter drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]" />
