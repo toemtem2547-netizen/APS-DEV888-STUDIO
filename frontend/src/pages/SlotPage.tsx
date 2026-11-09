@@ -461,89 +461,7 @@ export const SlotPage: React.FC = () => {
         </div>
 
         {/* ---------- Stage ---------- */}
-        <div className="relative flex items-end justify-center">
-          {/* ============================================================ */}
-          {/*  LEFT SIDE OF SLOT MACHINE: TREASURES                        */}
-          {/* ============================================================ */}
-
-          {/* Diamond Scatter Vault (Top-Left of Machine Frame) */}
-          <div className="hidden lg:block absolute -left-12 xl:-left-20 2xl:-left-24 top-[18%] w-32 xl:w-36 z-30 pointer-events-none slot-float">
-            <div className="relative">
-              <div className="absolute inset-0 bg-fuchsia-500/35 blur-2xl rounded-full animate-pulse" />
-              <img
-                src={`${IMG}/sym_scatter.png`}
-                alt=""
-                className="w-full drop-shadow-[0_12px_24px_rgba(217,70,239,0.7)]"
-              />
-              <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 px-2.5 py-0.5 rounded-full bg-gradient-to-r from-purple-600 via-fuchsia-500 to-pink-500 text-[9px] font-black text-white uppercase tracking-wider shadow-md whitespace-nowrap border border-pink-200/60">
-                💎 SCATTER VAULT
-              </div>
-            </div>
-          </div>
-
-          {/* Left Treasure Base: 1 Large Red Jewel Chest + Money Bag */}
-          <div className="hidden lg:block absolute -left-12 xl:-left-20 2xl:-left-28 bottom-[-16px] w-40 xl:w-48 2xl:w-56 z-30 pointer-events-none">
-            <div className="relative">
-              <div className="absolute inset-0 bg-amber-500/30 blur-2xl rounded-full" />
-              <img
-                src={`${IMG}/sym_bag.png`}
-                alt=""
-                className="w-[45%] absolute -top-8 -right-2 rotate-[12deg] drop-shadow-[0_12px_20px_rgba(0,0,0,0.85)] slot-float"
-              />
-              <img
-                src={`${IMG}/sym_chest.png`}
-                alt=""
-                className="relative w-full rotate-[3deg] drop-shadow-[0_18px_28px_rgba(0,0,0,0.95)] drop-shadow-[0_0_25px_rgba(250,204,21,0.5)] slot-float"
-              />
-              <img
-                src={`${IMG}/deco_coin_stack.png`}
-                alt=""
-                className="w-[38%] absolute -bottom-3 -left-3 rotate-[-6deg] drop-shadow-[0_10px_18px_rgba(0,0,0,0.9)]"
-              />
-            </div>
-          </div>
-
-          {/* ============================================================ */}
-          {/*  RIGHT SIDE OF SLOT MACHINE: LOGO, MASCOT & TREASURES        */}
-          {/* ============================================================ */}
-
-          {/* 1. Game Logo (Top-Right of Frame) */}
-          <img
-            src={logoSrc}
-            onError={() => setLogoSrc(`${IMG}/slot_logo.jpg`)}
-            alt="Cat Heist Slots"
-            className={`hidden lg:block absolute -right-2 xl:-right-6 -top-8 w-36 xl:w-44 z-30 pointer-events-none slot-float drop-shadow-[0_10px_30px_rgba(250,204,21,0.55)] ${logoSrc.endsWith('.jpg') ? 'slot-black-key' : ''}`}
-          />
-
-          {/* 2. Cat Boss Mascot (Mid/Bottom-Right of Frame) */}
-          <img
-            src={mascotSrc}
-            onError={() => setMascotSrc(`${IMG}/slot_mascot.jpg`)}
-            alt="Cat Boss"
-            className={`hidden lg:block absolute -right-12 xl:-right-20 bottom-[-6px] h-[76%] z-30 pointer-events-none slot-mascot ${mascotSrc.endsWith('.jpg') ? 'slot-black-key' : ''}`}
-          />
-
-          {/* 3. Right Treasure Base: 1 Royal Gold Chest beside Mascot */}
-          <div className="hidden lg:block absolute -right-14 xl:-right-22 2xl:-right-28 bottom-[-16px] w-38 xl:w-44 2xl:w-50 z-[32] pointer-events-none">
-            <div className="relative">
-              <img
-                src={`${IMG}/deco_royal_chest.png`}
-                alt=""
-                className="w-full rotate-[-5deg] drop-shadow-[0_18px_28px_rgba(0,0,0,0.95)] drop-shadow-[0_0_22px_rgba(250,204,21,0.5)] slot-float"
-              />
-              <img
-                src={`${IMG}/sym_bag.png`}
-                alt=""
-                className="w-[44%] absolute -bottom-2 -left-2 rotate-[-8deg] drop-shadow-[0_12px_20px_rgba(0,0,0,0.9)]"
-              />
-              <img
-                src={`${IMG}/deco_coin_stack.png`}
-                alt=""
-                className="w-[36%] absolute -bottom-3 right-0 rotate-[6deg] drop-shadow-[0_10px_18px_rgba(0,0,0,0.9)]"
-              />
-            </div>
-          </div>
-
+        <div className="relative flex items-center justify-center">
           {/* Machine frame */}
           <div className="slot-frame relative w-full lg:w-[72%] xl:w-[70%]">
             <div className="slot-frame-bolts" />
@@ -586,23 +504,11 @@ export const SlotPage: React.FC = () => {
               </div>
             </div>
 
-            {/* Line number pegs */}
-            <div className="hidden sm:flex absolute left-[-14px] top-[12%] bottom-[12%] flex-col justify-between">
-              {[1, 4, 2, 5, 3].map((n) => <span key={n} className="slot-peg">{n}</span>)}
-            </div>
-            <div className="hidden sm:flex absolute right-[-14px] top-[12%] bottom-[12%] flex-col justify-between">
-              {[6, 9, 7, 10, 8].map((n) => <span key={n} className="slot-peg">{n}</span>)}
-            </div>
           </div>
         </div>
 
-        {/* Control bar wrapper with foreground coin spill */}
+        {/* Control bar wrapper */}
         <div className="relative mt-2 sm:mt-3 mx-auto lg:w-[76%]">
-          {/* Gold bars & continuous coin spill strip behind controls */}
-          <div className="absolute -top-10 -bottom-3 inset-x-[-4%] pointer-events-none z-0 overflow-visible opacity-90">
-            <img src={`${IMG}/vault_coins_strip.svg`} alt="" className="w-full h-full object-cover filter drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]" />
-          </div>
-
           <div className="slot-controls relative z-10">
             <div className="grid grid-cols-12 items-stretch gap-2 sm:gap-3">
             {/* Buy coins */}
@@ -800,41 +706,28 @@ const SLOT_CSS = `
 
 /* Frame */
 .slot-frame { 
-  padding: clamp(12px, 1.8vw, 24px); 
-  border-radius: 32px; 
-  background: 
-    radial-gradient(ellipse at 50% 0%, #fffbe0 0%, #ffd54f 20%, transparent 60%),
-    linear-gradient(145deg, #fff2b8 0%, #f7b71d 15%, #945800 32%, #ffdf7a 50%, #b06e00 68%, #fff0a8 85%, #6e3d00 100%);
-  border: 3px solid #ffe57f;
+  padding: clamp(10px, 1.4vw, 18px); 
+  border-radius: 24px; 
+  background: linear-gradient(135deg, #ffd700 0%, #b8860b 22%, #2a1a00 50%, #d4af37 78%, #fff0a8 100%);
+  border: 2.5px solid #ffe57f;
   box-shadow:
-    0 0 0 2px #3d1f00, 
-    0 0 0 5px #ffb300,
-    0 0 75px rgba(250, 180, 30, 0.65), 
-    0 35px 70px rgba(0, 0, 0, 0.85), 
-    inset 0 3px 8px rgba(255, 255, 255, 0.9), 
-    inset 0 -8px 16px rgba(0, 0, 0, 0.6); 
+    0 0 0 2px #1c0f00, 
+    0 0 35px rgba(234, 179, 8, 0.45), 
+    0 25px 60px rgba(0, 0, 0, 0.9), 
+    inset 0 2px 5px rgba(255, 255, 255, 0.8), 
+    inset 0 -5px 12px rgba(0, 0, 0, 0.7); 
   position: relative;
 }
 .slot-frame::before { 
   content: ''; 
   position: absolute; 
-  inset: 7px; 
-  border-radius: 25px; 
-  border: 2px solid rgba(255, 248, 200, 0.85); 
-  box-shadow: inset 0 0 12px rgba(255, 215, 0, 0.4);
+  inset: 5px; 
+  border-radius: 18px; 
+  border: 1.5px solid rgba(255, 240, 160, 0.7); 
   pointer-events: none; 
 }
-.slot-frame-bolts { 
-  position: absolute; 
-  inset: 0; 
-  pointer-events: none; 
-  background:
-    radial-gradient(circle at 18px 18px, #ffffff 0 3px, #ffd54f 5px, #8a5300 7px, transparent 8px),
-    radial-gradient(circle at calc(100% - 18px) 18px, #ffffff 0 3px, #ffd54f 5px, #8a5300 7px, transparent 8px),
-    radial-gradient(circle at 18px calc(100% - 18px), #ffffff 0 3px, #ffd54f 5px, #8a5300 7px, transparent 8px),
-    radial-gradient(circle at calc(100% - 18px) calc(100% - 18px), #ffffff 0 3px, #ffd54f 5px, #8a5300 7px, transparent 8px); 
-}
-.slot-window { border-radius:16px; overflow:hidden; background:radial-gradient(ellipse at 50% 30%,#1d2a6b 0%,#0c1440 55%,#050822 100%); box-shadow: inset 0 0 0 3px #3a2200, inset 0 10px 25px rgba(0,0,0,.85), inset 0 -10px 25px rgba(0,0,0,.85); }
+.slot-frame-bolts { display: none; }
+.slot-window { border-radius:16px; overflow:hidden; background:radial-gradient(ellipse at 50% 35%,#131a40 0%,#080c24 60%,#030512 100%); border: 1.5px solid rgba(245,200,76,0.35); box-shadow: inset 0 8px 24px rgba(0,0,0,0.95), inset 0 -8px 24px rgba(0,0,0,0.95); }
 .slot-window::after { content:''; position:absolute; inset:0; pointer-events:none; background:linear-gradient(180deg,rgba(0,0,0,.55) 0%,transparent 14%,transparent 86%,rgba(0,0,0,.55) 100%); z-index:5; }
 .slot-reel-divider::after { content:''; position:absolute; right:0; top:4%; bottom:4%; width:2px; background:linear-gradient(180deg,transparent,#f5c84c 20%,#fff2b3 50%,#f5c84c 80%,transparent); opacity:.55; z-index:4; }
 .slot-peg { width:26px; height:26px; border-radius:9999px; font-size:11px; font-weight:900; color:#3b1d00; display:flex; align-items:center; justify-content:center; background:radial-gradient(circle at 35% 30%,#fff6c8,#e0a11a 60%,#8a5300); box-shadow:0 2px 4px rgba(0,0,0,.6); }
