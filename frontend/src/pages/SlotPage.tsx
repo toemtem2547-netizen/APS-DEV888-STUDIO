@@ -407,7 +407,7 @@ export const SlotPage: React.FC = () => {
 
   /* ================================================================== */
   return (
-    <div className={`slot-page relative min-h-screen overflow-hidden pt-[76px] pb-10 select-none flex flex-col justify-center ${screenShake ? 'slot-screen-shake' : ''}`}>
+    <div className={`slot-page relative min-h-screen overflow-hidden pt-[76px] pb-14 select-none flex flex-col justify-center ${screenShake ? 'slot-screen-shake' : ''}`}>
       <style>{SLOT_CSS}</style>
 
       {/* Background */}
@@ -431,21 +431,23 @@ export const SlotPage: React.FC = () => {
         ))}
       </div>
 
-      <div className="relative z-10 mx-auto w-full max-w-[1020px] px-2 sm:px-4 scale-[0.88] 2xl:scale-95 origin-center my-auto">
+      <div className="relative z-10 mx-auto w-full max-w-[1020px] px-2 sm:px-4 scale-[0.88] 2xl:scale-95 origin-center my-auto -translate-y-4 sm:-translate-y-6">
         {/* ---------- Top bar ---------- */}
-        <div className="flex items-center justify-between gap-2 mb-2 sm:mb-3 relative">
+        <div className="flex items-center justify-between gap-3 mb-3 relative">
           <div className="flex items-center gap-2 relative z-20">
-            <Link to="/slots" className="slot-round-btn" title="กลับไปเลือกล็อบบี้ห้องเกม"><Home className="w-5 h-5" /></Link>
-            <Link to="/slots" className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/60 border border-yellow-400/40 text-[11px] font-black text-yellow-300 hover:text-white hover:border-yellow-300 transition-all shadow-md">
+            <Link to="/slots" className="slot-round-btn group" title="กลับไปเลือกล็อบบี้ห้องเกม">
+              <Home className="w-4 h-4 text-amber-200 group-hover:text-white transition-colors" />
+            </Link>
+            <Link to="/slots" className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gradient-to-r from-black/80 to-purple-950/70 border border-amber-400/30 text-[11px] font-black text-amber-300 hover:text-white hover:border-amber-300 transition-all shadow-[0_4px_12px_rgba(0,0,0,0.5)]">
               <span>← เลือกล็อบบี้ห้องสล็อต</span>
             </Link>
           </div>
 
-          {/* Jackpot with flanking Dragon & Chest Ornaments */}
-          <div className="relative flex-1 max-w-[580px] mx-auto flex items-center justify-center">
+          {/* Jackpot Bar: Modern Luxury Gold & Cyber-Purple Banner */}
+          <div className="relative flex-1 max-w-[520px] mx-auto flex items-center justify-center">
             <div className="slot-jackpot relative w-full z-10">
               <div className="slot-jackpot-inner">
-                <Crown className="w-5 h-5 sm:w-7 sm:h-7 text-yellow-300 drop-shadow-[0_0_8px_rgba(250,204,21,0.9)] shrink-0" />
+                <Crown className="w-5 h-5 sm:w-6 sm:h-6 text-yellow-300 drop-shadow-[0_0_10px_rgba(250,204,21,1)] shrink-0 animate-pulse" />
                 <span className="slot-jackpot-label">JACKPOT</span>
                 <span className="slot-jackpot-value tabular-nums">฿{fmt(jackpotDisplay)}</span>
               </div>
@@ -453,10 +455,12 @@ export const SlotPage: React.FC = () => {
           </div>
 
           <div className="flex items-center gap-2 relative z-20">
-            <button onClick={() => setMuted((m) => !m)} className="slot-round-btn" title="เสียง">
-              {muted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
+            <button onClick={() => setMuted((m) => !m)} className="slot-round-btn group" title="เสียง">
+              {muted ? <VolumeX className="w-4 h-4 text-rose-300" /> : <Volume2 className="w-4 h-4 text-amber-200 group-hover:text-white" />}
             </button>
-            <button onClick={() => setShowPaytable(true)} className="slot-round-btn" title="ตารางจ่าย"><Info className="w-5 h-5" /></button>
+            <button onClick={() => setShowPaytable(true)} className="slot-round-btn group" title="ตารางจ่าย">
+              <Info className="w-4 h-4 text-amber-200 group-hover:text-white" />
+            </button>
           </div>
         </div>
 
@@ -677,14 +681,60 @@ const SLOT_CSS = `
 .slot-sparkle { position:absolute; width:4px; height:4px; border-radius:9999px; background:#ffe9a8; box-shadow:0 0 10px 3px rgba(255,214,102,.8); animation: slotTwinkle 4s ease-in-out infinite; opacity:0; }
 @keyframes slotTwinkle { 0%,100% { opacity:0; transform:scale(.4);} 50% { opacity:1; transform:scale(1.2);} }
 
-/* Jackpot */
-.slot-jackpot { padding:3px; border-radius:9999px; background:linear-gradient(180deg,#fff6c2,#f2b318 35%,#9a5b00 70%,#ffd34d); box-shadow:0 0 30px rgba(250,204,21,.45), 0 6px 18px rgba(0,0,0,.6); }
-.slot-jackpot-inner { display:flex; align-items:center; justify-content:center; gap:.6rem; border-radius:9999px; padding:.35rem 1rem; background:radial-gradient(ellipse at 50% 0%,#3b2a85 0%,#1a1046 55%,#0b0624 100%); box-shadow: inset 0 2px 10px rgba(255,255,255,.15), inset 0 -4px 12px rgba(0,0,0,.6); }
-.slot-jackpot-label { font-weight:900; font-style:italic; letter-spacing:.04em; background:linear-gradient(180deg,#fffbe0,#ffd23f 45%,#ff8a00); -webkit-background-clip:text; background-clip:text; color:transparent; filter:drop-shadow(0 2px 0 #7a2e00) drop-shadow(0 0 8px rgba(255,190,0,.6)); font-size:clamp(.9rem,2.2vw,1.5rem); }
-.slot-jackpot-value { font-weight:900; color:#fff; font-size:clamp(1rem,3vw,2rem); text-shadow:0 0 12px rgba(125,211,252,.9), 0 2px 0 #1e3a8a; }
+/* Jackpot & Top Bar */
+.slot-jackpot { 
+  padding: 2px; 
+  border-radius: 9999px; 
+  background: linear-gradient(90deg, rgba(212,175,55,0.2) 0%, #ffd700 30%, #fff2a8 50%, #ffd700 70%, rgba(212,175,55,0.2) 100%); 
+  box-shadow: 0 0 25px rgba(234,179,8,0.35), 0 8px 24px rgba(0,0,0,0.85); 
+}
+.slot-jackpot-inner { 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  gap: 0.75rem; 
+  border-radius: 9999px; 
+  padding: 0.45rem 1.6rem; 
+  background: linear-gradient(180deg, #180e38 0%, #0c0620 100%); 
+  box-shadow: inset 0 1px 3px rgba(255,255,255,0.25), inset 0 -3px 8px rgba(0,0,0,0.8); 
+}
+.slot-jackpot-label { 
+  font-weight: 900; 
+  font-style: italic; 
+  letter-spacing: 0.12em; 
+  background: linear-gradient(180deg, #ffffff 0%, #ffe066 50%, #f59e0b 100%); 
+  -webkit-background-clip: text; 
+  background-clip: text; 
+  color: transparent; 
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.8)); 
+  font-size: clamp(0.85rem, 1.8vw, 1.25rem); 
+}
+.slot-jackpot-value { 
+  font-weight: 900; 
+  letter-spacing: 0.03em;
+  color: #ffffff; 
+  font-size: clamp(1.15rem, 2.6vw, 1.85rem); 
+  text-shadow: 0 0 16px rgba(250,204,21,0.6), 0 2px 8px rgba(0,0,0,0.9); 
+}
 
-.slot-round-btn { width:42px; height:42px; border-radius:9999px; display:flex; align-items:center; justify-content:center; color:#fff7d6; background:radial-gradient(circle at 35% 30%,#6b4bd8,#2b1670 70%); border:2px solid #f5c84c; box-shadow:0 4px 10px rgba(0,0,0,.5), inset 0 2px 4px rgba(255,255,255,.3); transition:transform .15s; }
-.slot-round-btn:hover { transform:scale(1.08); }
+.slot-round-btn { 
+  width: 40px; 
+  height: 40px; 
+  border-radius: 9999px; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  color: #fef08a; 
+  background: linear-gradient(180deg, #24164d 0%, #12092c 100%); 
+  border: 1.5px solid rgba(234, 179, 8, 0.55); 
+  box-shadow: 0 4px 12px rgba(0,0,0,0.6), inset 0 1px 2px rgba(255,255,255,0.2); 
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1); 
+}
+.slot-round-btn:hover { 
+  transform: translateY(-2px) scale(1.08); 
+  border-color: #fde047;
+  box-shadow: 0 6px 16px rgba(234,179,8,0.4), inset 0 1px 4px rgba(255,255,255,0.4);
+}
 
 /* Frame */
 .slot-frame { 
