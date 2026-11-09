@@ -407,7 +407,7 @@ export const SlotPage: React.FC = () => {
 
   /* ================================================================== */
   return (
-    <div className={`slot-page relative min-h-screen overflow-hidden pt-[76px] pb-28 md:pb-10 select-none ${screenShake ? 'slot-screen-shake' : ''}`}>
+    <div className={`slot-page relative min-h-screen overflow-hidden pt-[76px] pb-10 select-none flex flex-col justify-center ${screenShake ? 'slot-screen-shake' : ''}`}>
       <style>{SLOT_CSS}</style>
 
       {/* Background */}
@@ -431,7 +431,7 @@ export const SlotPage: React.FC = () => {
         ))}
       </div>
 
-      <div className="relative z-10 mx-auto w-full max-w-[1020px] px-2 sm:px-4 scale-[0.88] 2xl:scale-95 origin-top">
+      <div className="relative z-10 mx-auto w-full max-w-[1020px] px-2 sm:px-4 scale-[0.88] 2xl:scale-95 origin-center my-auto">
         {/* ---------- Top bar ---------- */}
         <div className="flex items-center justify-between gap-2 mb-2 sm:mb-3 relative">
           <div className="flex items-center gap-2 relative z-20">
